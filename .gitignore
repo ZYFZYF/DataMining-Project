@@ -1,4 +1,3 @@
-data/*
-model/*
-mrpc_output/*
-sim_output/*
+*
+!*.py
+!.md
