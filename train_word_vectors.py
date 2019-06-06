@@ -18,9 +18,10 @@ def train():
 def test():
     model = Word2Vec.load('./model/titles_cbow.word2vec')
     print(model.accuracy)
-    words = [u'中国', u'我', u'你', u'你好', u'辟谣', u'谣言']
+    words = [u'中国', u'我', u'你', u'你好', u'辟谣', u'谣言', u'?', u'!', u'1']
     for word in words:
         print(word in model)
+        print(model[word])
         if word in model:
             for ans in model.most_similar(word):
                 print(ans[0].encode('utf8'))
