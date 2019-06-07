@@ -28,6 +28,16 @@ def test():
                 print(ans[1])
 
 
+w2v = Word2Vec.load('./model/titles_cbow.word2vec')
+
+
+def get_word_vector(word):
+    return w2v[word]
+
+
 if __name__ == '__main__':
     # train()
     test()
+    print(get_word_vector(u'中国'))
+    print(get_word_vector(u'得过'))
+

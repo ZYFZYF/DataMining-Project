@@ -104,6 +104,16 @@ def test_jieba():
     for s in sentences:
         print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False, allowPOS=allowPos))))
         print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False))))
+    df = pd.read_csv('./data/train.csv', encoding='utf8')
+    tf = df[df.label == u'disagreed'][0:100]
+    for ind, row in tf.iterrows():
+        print(' '.join([row['title1'], row['title2'], row['label']]))
+        s = row['title1']
+        print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False, allowPOS=allowPos))))
+        print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False))))
+        s = row['title2']
+        print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False, allowPOS=allowPos))))
+        print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False))))
 
 
 allowPos = ['n', 'nr', 'nr1', 'nr2', 'ns', 'nrj', 'nt', 'nsf', 'nz', 't', 'v', 'vn', 'm', 'nl', 'ng']
