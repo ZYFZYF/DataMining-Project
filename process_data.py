@@ -7,6 +7,7 @@ def format_label(x):
             'unrelated': 0,
             'agreed': 1}.get(x, x)
 
+
 if __name__ == '__main__':
     df = pd.read_csv('data/train.csv')
     train, dev, train_label, dev_label = train_test_split(df[['id', 'title1', 'title2']],
