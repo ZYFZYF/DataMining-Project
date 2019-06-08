@@ -119,22 +119,25 @@ def test_jieba():
 allowPos = ['n', 'nr', 'nr1', 'nr2', 'ns', 'nrj', 'nt', 'nsf', 'nz', 't', 'v', 'vn', 'm', 'nl', 'ng']
 
 
-def jaccard_dist(x, y):
-    xx = jieba.analyse.extract_tags(x, topK=20, withWeight=False, allowPOS=allowPos)
-    yy = jieba.analyse.extract_tags(y, topK=20, withWeight=False, allowPOS=allowPos)
-    # print(' '.join(xx))
-    # print(' '.join(yy))
+def jaccard_dist_between_list(xx, yy):
     try:
         return 1.0 * len(set(xx) & set(yy)) / len(set(xx) | set(yy))
     except Exception, e:
         print(e)
-        print(x)
-        print(y)
         print(xx)
         print(yy)
         print(' '.join(xx))
         print(' '.join(yy))
         return 0
+
+
+def jaccard_dist(x, y):
+    xx = jieba.analyse.extract_tags(x, topK=20, withWeight=False, allowPOS=allowPos)
+    yy = jieba.analyse.extract_tags(y, topK=20, withWeight=False, allowPOS=allowPos)
+    # print(' '.join(xx))
+    # print(' '.join(yy))
+    return jaccard_dist_between_list(xx, yy)
+
 
 
 def test_jaccard():
