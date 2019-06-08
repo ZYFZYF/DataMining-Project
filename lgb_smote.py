@@ -57,7 +57,7 @@ if __name__ == '__main__':
     print(len(train_data))
     logging.info("we have %s train datas" % len(train_data))
     train_data.dropna(how='any', axis=0, inplace=True)
-    features = train_data[TRAIN_FEATURES_NEW]
+    features = train_data[TRAIN_FEATURES]
     new_features = features.dropna(how='any', axis=0, inplace=False)
     label = train_data[LABEL].apply(format_label)
     X_train, X_eval, Y_train, Y_eval = train_test_split(features, label, test_size=0.2, random_state=42)
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     logging.info('auc is %s' % accuracy_score(Y_eval, y_pred))
     logging.info('online score is %s' % online_score(Y_eval, y_pred))
     test_data = data[data.label != data.label]
-    X_test = test_data[TRAIN_FEATURES_NEW]
+    X_test = test_data[TRAIN_FEATURES]
     logging.info("we need to predict %s test datas" % len(X_test))
     y_pred = clf.predict(X_test)
     y_pred = [list(x).index(max(x)) for x in y_pred]

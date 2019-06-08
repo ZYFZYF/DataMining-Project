@@ -128,7 +128,8 @@ if __name__ == '__main__':
             best_param = param
     import pdb;pdb.set_trace()
     """
-    # fine-tune lambda_l1, lambda_l2
+    # fine-tune lambda_l1, lambda_l2 result: {'lambda_l1': 0.0, 'lambda_l2': 0.0} 这是个啥玩意儿啊
+    """
     logging.start('fine tune')
     params_test1 = {'lambda_l1': [1e-5, 1e-3, 1e-1, 0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0],
                     'lambda_l2': [1e-5, 1e-3, 1e-1, 0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0]}
@@ -147,6 +148,29 @@ if __name__ == '__main__':
             best_score = score
             best_param = param
     import pdb;pdb.set_trace()
+    """
+    # fine-tune min_split_gain result:{'min_split_gain': 0.0} wtf?
+    """
+    logging.start('fine tune')
+    params_test1 = {'min_split_gain': [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}
+
+    gsearch1 = GridSearchCV(
+        estimator=lgb.LGBMClassifier(objective='multiclass', learning_rate=0.1, n_estimators=180, num_leaves=20,
+                                     max_depth=5, min_data_in_leaf=41, max_bin=95, bagging_freq=0, bagging_fraction=0.6,
+                                     feature_fraction=0.8, lambda_l1=0.0, lambda_l2=0.0),
+        param_grid=params_test1, scoring='accuracy', cv=5, n_jobs=-1)
+    gsearch1.fit(X_train, Y_train)
+    logging.end()
+    best_score = 0
+    for param, score in zip(gsearch1.cv_results_.get('params'), gsearch1.cv_results_.get('mean_test_score')):
+        print(param, score)
+        if score > best_score:
+            best_score = score
+            best_param = param
+    import pdb;
+
+    pdb.set_trace()
+    """
 
     clf = lgb.train(params, train_data, valid_sets=[validation_data])
     test_data = data[data.label != data.label]

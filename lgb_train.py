@@ -7,6 +7,7 @@ from sklearn import model_selection
 from utils_logging import Logging
 from utils_common import TRAIN_FEATURES, LABEL, TRAIN_FEATURES_NEW
 from sklearn.model_selection import train_test_split
+from collections import defaultdict
 
 logging = Logging()
 
@@ -26,16 +27,22 @@ def label_format(x):
 def online_score(ans, pre):
     ret = 0
     tot = 0
+    data = defaultdict(int)
+    right = defaultdict(int)
     for x, y in zip(ans, pre):
-        if x == u'unrelated':
+        if x == 1:
             rate = 1.0 / 16
-        elif x == u'agreed':
+        elif x == 0:
             rate = 1.0 / 15
         else:
             rate = 1.0 / 5
         if x == y:
             ret += rate
+            right[x] += 1
+        data[x] += 1
         tot += rate
+    print(data)
+    print(right)
     return ret / tot
 
 
@@ -45,23 +52,26 @@ if __name__ == '__main__':
     train_data = data[data.label == data.label]
     print(len(train_data[train_data.label == u'disagreed']), len(train_data[train_data.label == u'agreed']),
           len(train_data[train_data.label == u'unrelated']))
-    agree_data = train_data[train_data.label == u'agreed']
-    disagree_data = train_data[train_data.label == u'disagreed']
-    unrelated_data = train_data[train_data.label == u'unrelated']
-    print(len(disagree_data))
-    train_data = pd.concat([train_data, agree_data, disagree_data, disagree_data, disagree_data, disagree_data, disagree_data, disagree_data, disagree_data, disagree_data])
-    print(len(train_data))
     train_data.dropna(how='any', axis=0, inplace=True)
     logging.info("we have %s train datas" % len(train_data))
     features = train_data[TRAIN_FEATURES_NEW]
     label = train_data[LABEL].apply(format_label)
-    X_train, X_eval, Y_train, Y_eval = train_test_split(features, label, test_size=0.2, random_state=42)
+    X_train, X_eval, Y_train, Y_eval = train_test_split(features, label, test_size=0.2, random_state=42, shuffle=True)
+    temp = X_train.copy()
+    temp[LABEL] = Y_train
+    agree_data = temp[temp.label == 0]
+    disagree_data = temp[temp.label == 2]
+    unrelated_data = temp[temp.label == 1]
+    # temp = pd.concat([temp, agree_data, disagree_data, disagree_data])
+    X_train = temp[TRAIN_FEATURES_NEW]
+    Y_train = temp[LABEL]
+    print(len(X_train), len(agree_data), len(disagree_data), len(unrelated_data))
     train_data = lgb.Dataset(X_train, label=Y_train)
     validation_data = lgb.Dataset(X_eval, label=Y_eval)
     params = {
         'learning_rate': 0.01,
-        'lambda_l1': 0.1,
-        'lambda_l2': 0.2,
+        'lambda_l1': 0.0,
+        'lambda_l2': 0.0,
         'max_depth': 5,
         'objective': 'multiclass',
         'num_class': 3,
@@ -71,7 +81,7 @@ if __name__ == '__main__':
         'bagging_freq': 0,
         'bagging_fraction': 0.6,
         'feature_fraction': 0.8,
-        'num_boost_round': 10000,# 没有区别
+        'num_boost_round': 5000,# 没有区别
         'early_stopping_rounds': 50
         # lightgbm.basic.LightGBMError: b‘Number of classes should be specified and greater than 1 for multiclass training‘
     }
