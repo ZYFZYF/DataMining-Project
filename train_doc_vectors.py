@@ -8,6 +8,7 @@ import gensim
 from gensim.models.doc2vec import Doc2Vec, LabeledSentence
 import logging
 import numpy as np
+import jieba.posseg
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
@@ -72,7 +73,9 @@ sentences = [u'用大蒜鉴别地沟油的方法,怎么鉴别地沟油', u'一�
              u'刘谦回归登湖南卫视春晚，湖南卫视会让谁来当“董卿”?', u'2017春晚有沈腾吗', u'1万元十年后是现在的多少钱',
              u'53岁朱军即将退休，接替者小撒和小尼落选？你绝对想不到是他', u'53岁朱军即将退出央视 接替者撒贝宁和小尼落选？',
              u'吃防腐剂吧', u'桃打防腐剂', u'永动机', u'永动机~', u'白头发越来越多是为什么？', u'白头发越来越多了', u'号外！快来看这里有“龙”在空中飞',
-             u'哇!真的有龙在空中飞']
+             u'哇!真的有龙在空中飞', u'快看!天上有UFO在飞！', u'年轻必须吃点苦', u'年轻必须能吃苦', u'年轻必须能吃"苦"',
+             u'猫吃鱼最健康？低级谣言最误人', u'“酒”混着喝易醉，“茶”混着喝会怎样？',u'衣冠禽兽原来是褒义词?', u'辟谣｜WIFI真的能杀精？',
+             u'IQ越高，睡得越晚', u'5月谣言榜来袭', u'造谣"大连交警撵死人"被拘', u'盐吃多了会变丑？变傻？居然是真的！']
 
 
 def test():
@@ -102,21 +105,26 @@ def get_stopwords():
 
 def test_jieba():
     for s in sentences:
+
+        s = s.replace('"', ' ').replace(u'“', ' ').replace(u'”', ' ')
         print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False, allowPOS=allowPos))))
         print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False))))
-    df = pd.read_csv('./data/train.csv', encoding='utf8')
-    tf = df[df.label == u'disagreed'][0:100]
-    for ind, row in tf.iterrows():
-        print(' '.join([row['title1'], row['title2'], row['label']]))
-        s = row['title1']
-        print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False, allowPOS=allowPos))))
-        print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False))))
-        s = row['title2']
-        print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False, allowPOS=allowPos))))
-        print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False))))
+        words = jieba.posseg.cut(s)
+        for w in words:
+            print w.word, w.flag
+    # df = pd.read_csv('./data/train.csv', encoding='utf8')
+    # tf = df[df.label == u'disagreed'][0:100]
+    # for ind, row in tf.iterrows():
+    #     print(' '.join([row['title1'], row['title2'], row['label']]))
+    #     s = row['title1']
+    #     print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False, allowPOS=allowPos))))
+    #     print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False))))
+    #     s = row['title2']
+    #     print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False, allowPOS=allowPos))))
+    #     print(s + ' ' + (' '.join(jieba.analyse.extract_tags(s, topK=20, withWeight=False))))
 
 
-allowPos = ['n', 'nr', 'nr1', 'nr2', 'ns', 'nrj', 'nt', 'nsf', 'nz', 't', 'v', 'vn', 'm', 'nl', 'ng']
+allowPos = ['n', 'nr', 'nr1', 'nr2', 'ns', 'nt', 'nz', 'nl', 'ng', 's', 't', 'v', 'vd', 'vb', 'eng', 'a', 'i', 'd', 'j']
 
 
 def jaccard_dist_between_list(xx, yy):

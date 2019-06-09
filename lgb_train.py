@@ -5,7 +5,7 @@ import lightgbm as lgb
 from sklearn import metrics
 from sklearn import model_selection
 from utils_logging import Logging
-from utils_common import TRAIN_FEATURES, LABEL, TRAIN_FEATURES_NEW
+from utils_common import TRAIN_FEATURES, LABEL, TRAIN_FEATURES_NEW, CATEGORICAL_FEATURES
 from sklearn.model_selection import train_test_split
 from collections import defaultdict
 
@@ -49,6 +49,8 @@ def online_score(ans, pre):
 if __name__ == '__main__':
     # 获取数据集
     data = pd.read_csv('data/train_after_clean_after_process.csv')
+    for col in CATEGORICAL_FEATURES:
+        data[col] = data[col].astype('category')
     train_data = data[data.label == data.label]
     print(len(train_data[train_data.label == u'disagreed']), len(train_data[train_data.label == u'agreed']),
           len(train_data[train_data.label == u'unrelated']))
@@ -62,7 +64,7 @@ if __name__ == '__main__':
     agree_data = temp[temp.label == 0]
     disagree_data = temp[temp.label == 2]
     unrelated_data = temp[temp.label == 1]
-    # temp = pd.concat([temp, agree_data, disagree_data, disagree_data])
+    temp = pd.concat([temp, disagree_data, disagree_data])
     X_train = temp[TRAIN_FEATURES_NEW]
     Y_train = temp[LABEL]
     print(len(X_train), len(agree_data), len(disagree_data), len(unrelated_data))
@@ -72,16 +74,16 @@ if __name__ == '__main__':
         'learning_rate': 0.01,
         'lambda_l1': 0.0,
         'lambda_l2': 0.0,
-        'max_depth': 5,
+        'max_depth': 6,
         'objective': 'multiclass',
         'num_class': 3,
-        'num_leaves': 20,
+        'num_leaves': 50,
         'min_data_in_leaf': 41,
         'max_bin': 95,
         'bagging_freq': 0,
         'bagging_fraction': 0.6,
         'feature_fraction': 0.8,
-        'num_boost_round': 5000,# 没有区别
+        'num_boost_round': 50000,# 没有区别
         'early_stopping_rounds': 50
         # lightgbm.basic.LightGBMError: b‘Number of classes should be specified and greater than 1 for multiclass training‘
     }

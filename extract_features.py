@@ -77,7 +77,8 @@ def view():
     plt.clf()
 
 
-negative_words = [u'辟谣', u'假的', u'造谣', u'谣言', u'假消息', u'误读', u'编造', u'传谣', u'虚假', u'断章取义', u'纯属', u'误传', u'扯淡']
+negative_words = [u'辟谣', u'假的', u'造谣', u'谣言', u'假消息', u'误读', u'编造', u'传谣', u'虚假', u'断章取义', u'纯属', u'误传',
+                  u'扯淡', u'错了', u'传谣', u'网传', u'否认', u'传言', u'假新闻', u'诽谤', u'不实', u'假的']
 
 
 def calc_distance_remove_negative():
@@ -100,10 +101,16 @@ def extract_features():
 
         title1_words = jieba.analyse.extract_tags(row[1], topK=20, withWeight=False, allowPOS=allowPos)
         title1_words_new = filter(lambda x: x not in negative_words, title1_words)
-        row.append(len(title1_words) - len(title1_words_new))
+        if len(title1_words) - len(title1_words_new):
+            row.append(1)
+        else:
+            row.append(0)
         title2_words = jieba.analyse.extract_tags(row[2], topK=20, withWeight=False, allowPOS=allowPos)
         title2_words_new = filter(lambda x: x not in negative_words, title2_words)
-        row.append(len(title2_words) - len(title2_words_new))
+        if len(title2_words) - len(title2_words_new):
+            row.append(1)
+        else:
+            row.append(0)
 
         # 算去除负面词之后的语义距离
         word_vecs = []
@@ -175,7 +182,7 @@ def extract_features():
                       columns=['id', 'title1', 'title2', 'label', 'keywords_jaccard_distance', 'title1_negative_count',
                                'title2_negative_count', 'keywords_meaning_distance_after_remove_negative_word',
                                'keywords_meaning_distance', 'keywords_jaccard_distance_after_remove_negative_word'])
-    df.to_csv('./data/train_after_clean_after_process.csv', encoding='utf8', index=False)
+    df.to_csv('./data/train_categorical.csv', encoding='utf8', index=False)
 
 
 if __name__ == '__main__':
