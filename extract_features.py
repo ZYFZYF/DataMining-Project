@@ -6,7 +6,7 @@ import jieba.analyse
 import pandas as pd
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
-from train_doc_vectors import cos_dist, get_sentence_vectors, jaccard_dist, allowPos, jaccard_dist_between_list
+from train_doc_vectors import cos_dist, get_sentence_vectors, jaccard_dist, allowPos, jaccard_dist_between_list, word2vec_dist
 from train_word_vectors import get_word_vector
 import logging
 from collections import defaultdict
@@ -29,7 +29,8 @@ def euclid_dist(vec1, vec2):
 def get_distance_function():
     # return cos_dist
     # return euclid_dist
-    return jaccard_dist
+    # return jaccard_dist
+    return word2vec_dist
 
 
 data = defaultdict(list)
@@ -77,8 +78,9 @@ def view():
     plt.clf()
 
 
-negative_words = [u'辟谣', u'假的', u'造谣', u'谣言', u'假消息', u'误读', u'编造', u'传谣', u'虚假', u'断章取义', u'纯属', u'误传',
-                  u'扯淡', u'错了', u'传谣', u'网传', u'否认', u'传言', u'假新闻', u'诽谤', u'不实', u'假的']
+negative_words = [u'辟谣', u'假的', u'造谣', u'谣言', u'假消息', u'误读', u'编造', u'传谣', u'虚假', u'断章取义', u'纯属',
+                  u'扯淡', u'错了', u'传谣', u'否认', u'传言', u'假新闻', u'诽谤', u'不实', u'假的', u'谣传', u'澄清', u'不实',
+                  u'消息不实']
 
 
 def calc_distance_remove_negative():
@@ -88,15 +90,19 @@ def calc_distance_remove_negative():
 def extract_features():
     df = pd.read_csv('./data/train_after_clean.csv', encoding='utf8')
     datas = df.values.tolist()
+    drop_cnt = 0
     for ind, row in enumerate(datas):
         if ind % 5000 == 0:
             print('processed %s/%s' % (ind, len(datas)))
+            # break
+        error = 0
         # 两个句子关键词的jaccard距离
         try:
             dist = get_distance_function()(row[1], row[2])
         except Exception, e:
             print(e, row)
             dist = 0.0
+            error += 1
         row.append(dist)
 
         title1_words = jieba.analyse.extract_tags(row[1], topK=20, withWeight=False, allowPOS=allowPos)
@@ -127,6 +133,7 @@ def extract_features():
             print(row[1])
             print(' '.join(title1_words_new))
             topic1 = [0] * 256
+            error += 1
         word_vecs = []
         for word in title2_words_new:
             try:
@@ -141,6 +148,7 @@ def extract_features():
             print(row[2])
             print(' '.join(title2_words_new))
             topic2 = [0] * 256
+            error += 1
         distance = cos_dist(topic1, topic2)
         row.append(distance)
 
@@ -159,6 +167,7 @@ def extract_features():
             print(row[1])
             print(' '.join(title1_words))
             topic1 = [0] * 256
+            error += 1
         word_vecs = []
         for word in title2_words:
             try:
@@ -173,16 +182,31 @@ def extract_features():
             print(row[2])
             print(' '.join(title2_words))
             topic2 = [0] * 256
+            error += 1
         distance = cos_dist(topic1, topic2)
         row.append(distance)
 
         # 加一个去除之后的jaccard距离
-        row.append(jaccard_dist_between_list(title1_words_new, title2_words_new))
+        try:
+            row.append(jaccard_dist_between_list(title1_words_new, title2_words_new))
+        except Exception,e:
+            row.append(0.0)
+            error += 1
+        row.append(' '.join(title1_words))
+        row.append(' '.join(title2_words))
+
+        if row[3] in [u'agreed', u'disagreed', u'unrelated'] and error > 0:
+            row.pop()
+            row.pop()
+            row.pop()
+            drop_cnt += 1
+            print('dropped id=%s, totally dropped %s/%s' % (row[0], drop_cnt, ind))
     df = pd.DataFrame(data=datas,
                       columns=['id', 'title1', 'title2', 'label', 'keywords_jaccard_distance', 'title1_negative_count',
                                'title2_negative_count', 'keywords_meaning_distance_after_remove_negative_word',
-                               'keywords_meaning_distance', 'keywords_jaccard_distance_after_remove_negative_word'])
-    df.to_csv('./data/train_categorical.csv', encoding='utf8', index=False)
+                               'keywords_meaning_distance', 'keywords_jaccard_distance_after_remove_negative_word',
+                               'title1_cut_words', 'title2_cut_words'])
+    df.to_csv('./data/train_categorical_final.csv', encoding='utf8', index=False)
 
 
 if __name__ == '__main__':

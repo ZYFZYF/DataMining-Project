@@ -24,7 +24,13 @@ def label_format(x):
             2: u'disagreed'}.get(x)
 
 
-def online_score(ans, pre):
+def online_score(ans, pre, eval_set):
+    wrong = eval_set.copy()
+    wrong['true_label'] = map(label_format, ans)
+    wrong['pred_label'] = map(label_format, pre)
+    wrong = wrong[wrong.true_label != wrong.pred_label]
+    wrong.sort_values(by=['true_label', 'pred_label'], inplace=True)
+    wrong.to_csv('./data/wrong_case.csv', encoding='utf8', index=False)
     ret = 0
     tot = 0
     data = defaultdict(int)
@@ -48,17 +54,19 @@ def online_score(ans, pre):
 
 if __name__ == '__main__':
     # 获取数据集
-    data = pd.read_csv('data/train_categorical.csv')
+    data = pd.read_csv('data/train_categorical_final.csv')
     for col in CATEGORICAL_FEATURES:
         data[col] = data[col].astype('category')
     train_data = data[data.label == data.label]
     print(len(train_data[train_data.label == u'disagreed']), len(train_data[train_data.label == u'agreed']),
           len(train_data[train_data.label == u'unrelated']))
     train_data.dropna(how='any', axis=0, inplace=True)
+
     logging.info("we have %s train datas" % len(train_data))
-    features = train_data[TRAIN_FEATURES_NEW]
+    features = train_data
     label = train_data[LABEL].apply(format_label)
     X_train, X_eval, Y_train, Y_eval = train_test_split(features, label, test_size=0.2, random_state=42, shuffle=True)
+    X_train = X_train[TRAIN_FEATURES_NEW]
     temp = X_train.copy()
     temp[LABEL] = Y_train
     agree_data = temp[temp.label == 0]
@@ -69,7 +77,7 @@ if __name__ == '__main__':
     Y_train = temp[LABEL]
     print(len(X_train), len(agree_data), len(disagree_data), len(unrelated_data))
     train_data = lgb.Dataset(X_train, label=Y_train)
-    validation_data = lgb.Dataset(X_eval, label=Y_eval)
+    validation_data = lgb.Dataset(X_eval[TRAIN_FEATURES_NEW], label=Y_eval)
     params = {
         'num_boost_round': 50000,# 没有区别
         'early_stopping_rounds': 50,
@@ -92,12 +100,12 @@ if __name__ == '__main__':
     clf = lgb.train(params, train_data, valid_sets=[validation_data])
     from sklearn.metrics import roc_auc_score, accuracy_score
 
-    y_pred = clf.predict(X_eval)
+    y_pred = clf.predict(X_eval[TRAIN_FEATURES_NEW])
     y_pred = [list(x).index(max(x)) for x in y_pred]
 
     # print(y_pred)
     logging.info('auc is %s' % accuracy_score(Y_eval, y_pred))
-    logging.info('online score is %s' % online_score(Y_eval, y_pred))
+    logging.info('online score is %s' % online_score(Y_eval, y_pred, X_eval))
     test_data = data[data.label != data.label]
     X_test = test_data[TRAIN_FEATURES_NEW]
     logging.info("we need to predict %s test datas" % len(X_test))

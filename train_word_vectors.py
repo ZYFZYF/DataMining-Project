@@ -5,6 +5,7 @@ import json
 import pandas as pd
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
+from train_doc_vectors import cos_dist
 import logging
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
@@ -15,8 +16,10 @@ def train():
     model.save('./model/titles_cobw.word2vec')
 
 
+model = Word2Vec.load('./model/titles_cbow.word2vec')
+
+
 def test():
-    model = Word2Vec.load('./model/titles_cbow.word2vec')
     print(model.accuracy)
     words = [u'中国', u'我', u'你', u'你好', u'辟谣', u'谣言', u'?', u'!', u'1']
     for word in words:
@@ -28,11 +31,12 @@ def test():
                 print(ans[1])
 
 
-w2v = Word2Vec.load('./model/titles_cbow.word2vec')
+def get_similarity_of_two_words(w1, w2):
+    return cos_dist(model[w1], model[w2])
 
 
 def get_word_vector(word):
-    return w2v[word]
+    return model[word]
 
 
 if __name__ == '__main__':
@@ -40,4 +44,9 @@ if __name__ == '__main__':
     test()
     print(get_word_vector(u'中国'))
     print(get_word_vector(u'得过'))
+    print(get_similarity_of_two_words(u'塑料袋', u'塑料'))
+    print(get_similarity_of_two_words(u'吃饭', u'塑料'))
+    print(get_similarity_of_two_words(u'中国', u'美国'))
+
+
 

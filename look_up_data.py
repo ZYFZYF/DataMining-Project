@@ -36,4 +36,4 @@ if __name__ == '__main__':
                        'keywords_meaning_distance_after_remove_negative_word': 'meaning'}, inplace=True)
     df.dropna(how='any', axis=0, inplace=True)
     sbn.pairplot(df, hue='label')
-    plt.savefig('./pic/feature_select.png', dpi=300)
+    plt.savefig('./pic/feature_select_update_jaccard.png', dpi=300)

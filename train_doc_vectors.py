@@ -18,10 +18,11 @@ TaggededDocument = gensim.models.doc2vec.TaggedDocument
 def get_dataset():
     f = open('./data/reduce_titles.txt', 'r')
     x_train = []
-    stopwords = get_stopwords()
+    # stopwords = get_stopwords()
     for i, line in enumerate(f.readlines()):
         words = line.split(' ')
         words[-1] = words[-1].strip()
+        print(words)
         # 训练doc2vec不应当去除停用词
         # print(' '.join(words))
         # words = filter(lambda x: x not in stopwords, words)
@@ -63,7 +64,7 @@ model = Doc2Vec.load('./model/dm')
 
 
 def get_sentence_vectors(sentence):
-    return model.infer_vector(list(jieba.cut(sentence)))
+    return model.infer_vector([word.encode('utf8') if isinstance(word, unicode) else word for word in list(jieba.cut(sentence))])
 
 
 sentences = [u'用大蒜鉴别地沟油的方法,怎么鉴别地沟油', u'一颗大蒜就能鉴别地沟油？别闹了！做到下面几点，让您远离地沟油',
@@ -74,8 +75,11 @@ sentences = [u'用大蒜鉴别地沟油的方法,怎么鉴别地沟油', u'一�
              u'53岁朱军即将退休，接替者小撒和小尼落选？你绝对想不到是他', u'53岁朱军即将退出央视 接替者撒贝宁和小尼落选？',
              u'吃防腐剂吧', u'桃打防腐剂', u'永动机', u'永动机~', u'白头发越来越多是为什么？', u'白头发越来越多了', u'号外！快来看这里有“龙”在空中飞',
              u'哇!真的有龙在空中飞', u'快看!天上有UFO在飞！', u'年轻必须吃点苦', u'年轻必须能吃苦', u'年轻必须能吃"苦"',
-             u'猫吃鱼最健康？低级谣言最误人', u'“酒”混着喝易醉，“茶”混着喝会怎样？',u'衣冠禽兽原来是褒义词?', u'辟谣｜WIFI真的能杀精？',
-             u'IQ越高，睡得越晚', u'5月谣言榜来袭', u'造谣"大连交警撵死人"被拘', u'盐吃多了会变丑？变傻？居然是真的！']
+             u'猫吃鱼最健康？低级谣言最误人', u'“酒”混着喝易醉，“茶”混着喝会怎样？', u'衣冠禽兽原来是褒义词?', u'辟谣｜WIFI真的能杀精？',
+             u'IQ越高，睡得越晚', u'5月谣言榜来袭', u'造谣"大连交警撵死人"被拘', u'盐吃多了会变丑？变傻？居然是真的！',
+             u'褚时健老人为什们会被多次误传去世？', u'甄子丹搂景甜遭拒，真应学鹿晗、陈伟霆的“绅士手”', u'甄子丹对景甜做了一个小动作，却遭拒绝，场面十分尴尬',
+             u'岳阳三荷机场试飞成功', u'岳阳市三荷机场客运飞机试飞成功', u'在藏区,看见白色帐篷别进去,有可能就成藏民的女婿了!', u'去西藏,路边的神秘的白帐篷可别随便乱进哦,小心失身!',
+             u'紫薯是转基因吗？是染色吗？谣言止于此，告诉您不一样的紫薯！']
 
 
 def test():
@@ -128,15 +132,8 @@ allowPos = ['n', 'nr', 'nr1', 'nr2', 'ns', 'nt', 'nz', 'nl', 'ng', 's', 't', 'v'
 
 
 def jaccard_dist_between_list(xx, yy):
-    try:
-        return 1.0 * len(set(xx) & set(yy)) / len(set(xx) | set(yy))
-    except Exception, e:
-        print(e)
-        print(xx)
-        print(yy)
-        print(' '.join(xx))
-        print(' '.join(yy))
-        return 0
+    # return 1.0 * len(set(xx) & set(yy)) / len(set(xx) | set(yy))
+    return 1.0 * len(set(xx) & set(yy)) / min(len(set(xx)), len(set(yy)))
 
 
 def jaccard_dist(x, y):
@@ -147,6 +144,9 @@ def jaccard_dist(x, y):
     return jaccard_dist_between_list(xx, yy)
 
 
+def word2vec_dist(x, y):
+    return cos_dist(get_sentence_vectors(x), get_sentence_vectors(y))
+
 
 def test_jaccard():
     for s1 in sentences:
@@ -154,10 +154,28 @@ def test_jaccard():
             print(s1 + ' ' + s2 + ' ' + str(jaccard_dist(s1, s2)))
 
 
+def test_doc2vec(test_text):
+    x_train = get_dataset()
+
+    model_dm = Doc2Vec.load("./model/dm")
+    inferred_vector_dm = model_dm.infer_vector(test_text)
+    print inferred_vector_dm
+    sims = model_dm.docvecs.most_similar([inferred_vector_dm], topn=10)
+    for count, sim in sims:
+        sentence = x_train[count]
+        words = ''
+        for word in sentence[0]:
+            words = words + word + ' '
+        print words, sim, len(sentence[0])
+
+
 if __name__ == '__main__':
-    # train()
+    train()
     # test()
-    test_jieba()
+    # test_jieba()
+    # test_doc2vec(['《', '舞林', '争霸' '》', '十强' '出炉', '复活', '舞者', '澳门', '踢馆'])
+    # test_doc2vec(['我国', '又一', '军舰', '顺利', '完成', '海试', '或', '将', '年底', '入伍', '专家', '意义', '堪比', '航母'])
+    # import pdb;pdb.set_trace()
     # test_jaccard()
     # print(jaccard_dist(u'六月蚊子多多，千万别用蚊香！教你一招，家里屋子的蚊子全都死光', u'6月蚊子无法无天！蚊香无用不环保，教你一招妙计，蠢蚊子哭死了'))
     # print(cos_dist([1, 1], [2, 2]), cos_dist([1, 0], [0, 1]))
