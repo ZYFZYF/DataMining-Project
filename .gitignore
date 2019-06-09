@@ -1,5 +1,5 @@
 *
-!pic/*
+!/pic/
 !*.py
 !.md
 !.txt
