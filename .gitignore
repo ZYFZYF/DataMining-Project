@@ -1,6 +1,4 @@
-*
-!/pic/
-!*.py
-!.md
-!.txt
-!.png
+/data/
+/mrpc_output/
+/sim_output/
+/model/
