@@ -48,7 +48,7 @@ def online_score(ans, pre):
 
 if __name__ == '__main__':
     # 获取数据集
-    data = pd.read_csv('data/train_after_clean_after_process.csv')
+    data = pd.read_csv('data/train_categorical.csv')
     for col in CATEGORICAL_FEATURES:
         data[col] = data[col].astype('category')
     train_data = data[data.label == data.label]
@@ -71,20 +71,22 @@ if __name__ == '__main__':
     train_data = lgb.Dataset(X_train, label=Y_train)
     validation_data = lgb.Dataset(X_eval, label=Y_eval)
     params = {
-        'learning_rate': 0.01,
-        'lambda_l1': 0.0,
-        'lambda_l2': 0.0,
-        'max_depth': 6,
-        'objective': 'multiclass',
-        'num_class': 3,
-        'num_leaves': 50,
-        'min_data_in_leaf': 41,
-        'max_bin': 95,
-        'bagging_freq': 0,
-        'bagging_fraction': 0.6,
-        'feature_fraction': 0.8,
         'num_boost_round': 50000,# 没有区别
-        'early_stopping_rounds': 50
+        'early_stopping_rounds': 50,
+        'num_leaves': 95,
+        'num_class': 3,
+        'lambda_l1': 1.0,
+        'bagging_freq': 45,
+        'learning_rate': 0.1,
+        'lambda_l2': 1.0,
+        'nthread': 4,
+        'min_split_gain': 1.0,
+        'min_data_in_leaf': 101,
+        'max_bin': 255,
+        'objective': 'multiclass',
+        'bagging_fraction': 1.0,
+        'max_depth': 7,
+        'feature_fraction': 1.0
         # lightgbm.basic.LightGBMError: b‘Number of classes should be specified and greater than 1 for multiclass training‘
     }
     clf = lgb.train(params, train_data, valid_sets=[validation_data])

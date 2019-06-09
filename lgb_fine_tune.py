@@ -200,3 +200,9 @@ if __name__ == '__main__':
     sub = sub[['id', 'label']]
     sub.loc[len(sub)] = [357062, u'unrelated']
     sub[['id', 'label']].to_csv('./data/result.txt', index=False, header=False, sep='\t')
+
+
+    """
+    result:
+    {'num_leaves': 95, 'num_class': 3, 'lambda_l1': 1.0, 'bagging_freq': 45, 'learning_rate': 0.1, 'lambda_l2': 1.0, 'nthread': 4, 'min_split_gain': 1.0, 'min_data_in_leaf': 101, 'max_bin': 255, 'objective': 'multiclass', 'bagging_fraction': 1.0, 'max_depth': 7, 'feature_fraction': 1.0}
+    """

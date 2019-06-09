@@ -2,8 +2,11 @@
 
 import pandas as pd
 import jieba.analyse
-allowPos = ['n', 'nr', 'nr1', 'nr2', 'ns', 'nrj', 'nt', 'nsf', 'nz', 't', 'v', 'vn', 'm', 'nl', 'ng']
+import seaborn as sbn
+import matplotlib.pyplot as plt
+from utils_common import TRAIN_FEATURES_NEW
 
+allowPos = ['n', 'nr', 'nr1', 'nr2', 'ns', 'nrj', 'nt', 'nsf', 'nz', 't', 'v', 'vn', 'm', 'nl', 'ng']
 
 if __name__ == '__main__':
     # df = pd.read_csv('./data/train.csv', encoding='utf8')
@@ -18,11 +21,19 @@ if __name__ == '__main__':
     # tf = df.dropna(how='any', axis=0)
     # new = set(tf['id'].to_list())
     # print(len(df), len(tf), origin - new)
-    df = pd.read_csv('./data/train.csv')
-    df.dropna(how='any', inplace=True)
-    tf = df[df.label == u'disagreed']
-    print(len(tf))
-    sentence = ' '.join(tf['title2'].to_list())
-    print(sentence)
-    print(' '.join(jieba.analyse.extract_tags(sentence, topK=100, withWeight=False, allowPOS=['n','v'])))
-
+    # df = pd.read_csv('./data/train.csv')
+    # df.dropna(how='any', inplace=True)
+    # tf = df[df.label == u'disagreed']
+    # print(len(tf))
+    # sentence = ' '.join(tf['title2'].to_list())
+    # print(sentence)
+    # print(' '.join(jieba.analyse.extract_tags(sentence, topK=100, withWeight=False, allowPOS=['n','v'])))
+    df = pd.read_csv('./data/train_categorical.csv')
+    df = df[TRAIN_FEATURES_NEW + ['label']]
+    df.rename(columns={'keywords_jaccard_distance': 'jaccard',
+                       'title1_negative_count': 'title1',
+                       'title2_negative_count': 'title2',
+                       'keywords_meaning_distance_after_remove_negative_word': 'meaning'}, inplace=True)
+    df.dropna(how='any', axis=0, inplace=True)
+    sbn.pairplot(df, hue='label')
+    plt.savefig('./pic/feature_select.png', dpi=300)
