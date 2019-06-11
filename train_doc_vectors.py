@@ -170,8 +170,8 @@ def test_doc2vec(test_text):
 
 
 if __name__ == '__main__':
-    train()
-    # test()
+    # train()
+    test()
     # test_jieba()
     # test_doc2vec(['《', '舞林', '争霸' '》', '十强' '出炉', '复活', '舞者', '澳门', '踢馆'])
     # test_doc2vec(['我国', '又一', '军舰', '顺利', '完成', '海试', '或', '将', '年底', '入伍', '专家', '意义', '堪比', '航母'])

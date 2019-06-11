@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="092388f6-5217-4c8d-9b8d-bcf1a14b95cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/extract_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lgb_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/lgb_train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/look_up_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/look_up_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lgb_smote.py" beforeDir="false" afterPath="$PROJECT_DIR$/lgb_smote.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train_doc_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_doc_vectors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_word_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_word_vectors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils_common.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils_common.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,9 +18,9 @@
     <SUITE FILE_PATH="coverage/DataMining_Project$look_up_data.coverage" NAME="look_up_data Coverage Results" MODIFIED="1560090728185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$cv_lgb_train.coverage" NAME="cv_lgb_train Coverage Results" MODIFIED="1559966791172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/DataMining_Project$get_distance_between_sentences.coverage" NAME="get_distance_between_sentences Coverage Results" MODIFIED="1560088776568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DataMining_Project$lgb_smote.coverage" NAME="lgb_smote Coverage Results" MODIFIED="1560004009541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$train_word_vectors.coverage" NAME="train_word_vectors Coverage Results" MODIFIED="1560073930178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DataMining_Project$train_doc_vectors.coverage" NAME="train_doc_vectors Coverage Results" MODIFIED="1560086549073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DataMining_Project$lgb_smote.coverage" NAME="lgb_smote Coverage Results" MODIFIED="1560095812262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DataMining_Project$train_doc_vectors.coverage" NAME="train_doc_vectors Coverage Results" MODIFIED="1560094066295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$lgb_train.coverage" NAME="lgb_train Coverage Results" MODIFIED="1559987431378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$cut_words.coverage" NAME="cut_words Coverage Results" MODIFIED="1559566802599" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$lgb_train__1_.coverage" NAME="lgb_train (1) Coverage Results" MODIFIED="1560090788719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -32,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils_common.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+            <state relative-caret-position="57">
+              <caret line="3" column="72" selection-start-line="3" selection-start-column="72" selection-end-line="3" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -41,7 +39,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_word_vectors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="804">
+            <state relative-caret-position="760">
               <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
               <folding>
                 <element signature="e#14#26#0" expanded="true" />
@@ -53,7 +51,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lgb_train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
+            <state relative-caret-position="1045">
               <caret line="63" selection-start-line="63" selection-end-line="63" />
               <folding>
                 <element signature="e#14#33#0" expanded="true" />
@@ -62,7 +60,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/train_categorical_final.csv">
           <provider selected="true" editor-type-id="LargeFileEditor">
             <state relative-caret-position="171">
@@ -74,8 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_doc_vectors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="149" selection-start-line="149" selection-end-line="149" />
+            <state relative-caret-position="209">
+              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
               <folding>
                 <element signature="e#14#26#0" expanded="true" />
               </folding>
@@ -86,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/extract_features.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="96" column="14" selection-start-line="96" selection-start-column="14" selection-end-line="96" selection-end-column="14" />
+            <state relative-caret-position="323">
+              <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
               <folding>
                 <element signature="e#14#26#0" expanded="true" />
               </folding>
@@ -96,16 +94,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modeling.py">
+        <entry file="file://$PROJECT_DIR$/lgb_smote.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1612" />
+            <state relative-caret-position="684">
+              <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+              <folding>
+                <element signature="e#14#33#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modeling.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/look_up_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
+            <state relative-caret-position="646">
               <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
               <folding>
                 <element signature="e#15#34#0" expanded="true" />
@@ -121,11 +129,6 @@
               <caret line="18" column="30" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="30" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pic/feature_select_update_jaccard.png">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -171,15 +174,15 @@
         <option value="$PROJECT_DIR$/data/cv_lgb_train.py" />
         <option value="$PROJECT_DIR$/get_distance_between_sentences.py" />
         <option value="$PROJECT_DIR$/cv_lgb_train.py" />
-        <option value="$PROJECT_DIR$/lgb_smote.py" />
         <option value="$PROJECT_DIR$/lgb_fine_tune.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/train_word_vectors.py" />
         <option value="$PROJECT_DIR$/look_up_data.py" />
-        <option value="$PROJECT_DIR$/utils_common.py" />
         <option value="$PROJECT_DIR$/lgb_train.py" />
-        <option value="$PROJECT_DIR$/train_doc_vectors.py" />
         <option value="$PROJECT_DIR$/extract_features.py" />
+        <option value="$PROJECT_DIR$/train_doc_vectors.py" />
+        <option value="$PROJECT_DIR$/utils_common.py" />
+        <option value="$PROJECT_DIR$/lgb_smote.py" />
       </list>
     </option>
   </component>
@@ -250,7 +253,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.lgb_train (1)">
+  <component name="RunManager" selected="Python.lgb_smote">
     <configuration name="get_distance_between_sentences" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DataMining-Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -265,6 +268,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_features.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="lgb_smote" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DataMining-Project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lgb_smote.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -339,35 +364,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train_word_vectors" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="DataMining-Project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train_word_vectors.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.lgb_smote" />
+        <item itemvalue="Python.train_doc_vectors" />
         <item itemvalue="Python.lgb_train (1)" />
         <item itemvalue="Python.look_up_data" />
         <item itemvalue="Python.get_distance_between_sentences" />
-        <item itemvalue="Python.train_doc_vectors" />
-        <item itemvalue="Python.train_word_vectors" />
       </list>
     </recent_temporary>
   </component>
@@ -385,11 +388,12 @@
       <workItem from="1559044113182" duration="1184000" />
       <workItem from="1559548095024" duration="16669000" />
       <workItem from="1559724917728" duration="1151000" />
+      <workItem from="1560152497318" duration="48000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116476000" />
+    <option name="totallyTimeSpent" value="119722000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -404,12 +408,12 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26037195" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2639485" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28433734" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.28433734" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -453,16 +457,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/distance.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/distances.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" lean-forward="true" selection-start-column="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/distance.json" />
+    <entry file="file://$PROJECT_DIR$/data/distances.json" />
     <entry file="file://$PROJECT_DIR$/data/stopwords.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -471,12 +467,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/reduce_titles.txt">
+      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="LargeFileEditor">
         <state>
           <caret column="37" selection-start-column="37" selection-end-column="37" />
         </state>
       </provider>
-      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/data/cos_distances.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -605,16 +601,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lgb_smote.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
-          <folding>
-            <element signature="e#14#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Python/2.7/site-packages/sklearn/model_selection/_split.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-482">
@@ -717,17 +703,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils_common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        <state relative-caret-position="57">
+          <caret line="3" column="72" selection-start-line="3" selection-start-column="72" selection-end-line="3" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train_word_vectors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="804">
+        <state relative-caret-position="760">
           <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
           <folding>
             <element signature="e#14#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lgb_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1045">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+          <folding>
+            <element signature="e#14#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_doc_vectors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+          <folding>
+            <element signature="e#14#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extract_features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+          <folding>
+            <element signature="e#14#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lgb_smote.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+          <folding>
+            <element signature="e#14#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modeling.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/look_up_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
+          <folding>
+            <element signature="e#15#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -739,55 +778,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modeling.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1612" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/train_categorical_final.csv">
       <provider selected="true" editor-type-id="LargeFileEditor">
         <state relative-caret-position="171">
           <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lgb_train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-          <folding>
-            <element signature="e#14#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train_doc_vectors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="149" selection-start-line="149" selection-end-line="149" />
-          <folding>
-            <element signature="e#14#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_features.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="96" column="14" selection-start-line="96" selection-start-column="14" selection-end-line="96" selection-end-column="14" />
-          <folding>
-            <element signature="e#14#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/look_up_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
-          <folding>
-            <element signature="e#15#34#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

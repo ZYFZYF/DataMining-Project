@@ -29,6 +29,7 @@ def online_score(ans, pre):
     tot = 0
     data = defaultdict(int)
     right = defaultdict(int)
+    wrong = defaultdict(dict)
     for x, y in zip(ans, pre):
         if x == 1:
             rate = 1.0 / 16
@@ -39,10 +40,16 @@ def online_score(ans, pre):
         if x == y:
             ret += rate
             right[x] += 1
+        else:
+            if y in wrong[x]:
+                wrong[x][y] += 1
+            else:
+                wrong[x][y] = 1
         data[x] += 1
         tot += rate
-    print(data)
-    print(right)
+    print('total %s' % data)
+    print('right %s' % right)
+    print('wrong %s' % wrong)
     return ret / tot
 
 

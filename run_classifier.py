@@ -224,7 +224,7 @@ class MrpcProcessor(DataProcessor):
 
     def get_labels(self):
         """See base class."""
-        return [1, 0, -1]
+        return [0, 1, 2]
 
     def _create_examples(self, lines, set_type):
         """Creates examples for the training and dev sets."""
@@ -244,10 +244,14 @@ class MrpcProcessor(DataProcessor):
             if set_type == "test":
                 label = 0
             else:
-                label = {'disagreed': -1,
-                         'unrelated': 0,
-                         'agreed': 1}.get(line[3], line[3])
-                label = tokenization.convert_to_unicode(label)
+                if line[3] in ['agreed', u'agreed']:
+                    label = 0
+                elif line[3] in ['unrelated', u'unrelated']:
+                    label = 1
+                elif line[3] in ['disagreed', u'disagreed']:
+                    label = 2
+                else:
+                    print('wtf')
             examples.append(
                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         print('%s get %s examples' % (set_type, len(examples)))
