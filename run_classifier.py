@@ -236,6 +236,7 @@ class MrpcProcessor(DataProcessor):
             if set_type == 'test':
                 if len(line) != 3:
                     continue
+                guid = line[0]
             else:
                 if len(line) != 4:
                     continue
@@ -845,7 +846,7 @@ def main(_):
                 probabilities = prediction["probabilities"]
                 if i >= num_actual_predict_examples:
                     break
-                output_line = "\t".join(
+                output_line = predict_examples[i].guid + "\t" + "\t".join(
                     str(class_probability)
                     for class_probability in probabilities) + "\n"
                 writer.write(output_line)

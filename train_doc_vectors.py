@@ -132,8 +132,8 @@ allowPos = ['n', 'nr', 'nr1', 'nr2', 'ns', 'nt', 'nz', 'nl', 'ng', 's', 't', 'v'
 
 
 def jaccard_dist_between_list(xx, yy):
-    # return 1.0 * len(set(xx) & set(yy)) / len(set(xx) | set(yy))
-    return 1.0 * len(set(xx) & set(yy)) / min(len(set(xx)), len(set(yy)))
+    return 1.0 * len(set(xx) & set(yy)) / len(set(xx) | set(yy))
+    # return 1.0 * len(set(xx) & set(yy)) / min(len(set(xx)), len(set(yy)))
 
 
 def jaccard_dist(x, y):

@@ -57,9 +57,15 @@ if __name__ == '__main__':
     data = pd.read_csv('data/train_categorical_final.csv')
     for col in CATEGORICAL_FEATURES:
         data[col] = data[col].astype('category')
+    bert_results = pd.read_csv('data/test_results_dup.tsv', sep='\t',
+                               names=['id', 'bert_prob_agree', 'bert_prob_unrelate', 'bert_prob_disagree'])
+    data = pd.merge(left=data, right=bert_results, on='id', how='left')
+    print(data.head)
     train_data = data[data.label == data.label]
     print(len(train_data[train_data.label == u'disagreed']), len(train_data[train_data.label == u'agreed']),
           len(train_data[train_data.label == u'unrelated']))
+    print(len(train_data))
+    print(train_data.head)
     train_data.dropna(how='any', axis=0, inplace=True)
 
     logging.info("we have %s train datas" % len(train_data))
@@ -79,22 +85,22 @@ if __name__ == '__main__':
     train_data = lgb.Dataset(X_train, label=Y_train)
     validation_data = lgb.Dataset(X_eval[TRAIN_FEATURES_NEW], label=Y_eval)
     params = {
-        'num_boost_round': 50000,# 没有区别
-        'early_stopping_rounds': 50,
-        'num_leaves': 95,
-        'num_class': 3,
-        'lambda_l1': 1.0,
-        'bagging_freq': 45,
-        'learning_rate': 0.1,
-        'lambda_l2': 1.0,
-        'nthread': 4,
-        'min_split_gain': 1.0,
-        'min_data_in_leaf': 101,
-        'max_bin': 255,
         'objective': 'multiclass',
-        'bagging_fraction': 1.0,
-        'max_depth': 7,
-        'feature_fraction': 1.0
+        'lambda_l1': 0.1,
+        'lambda_l2': 0.2,
+        'learning_rate': 0.1,
+        'num_class': 3,
+        # 'num_boost_round': 50000,# 没有区别
+        # 'early_stopping_rounds': 50,
+        # 'num_leaves': 95,
+        # 'bagging_freq': 45,
+        # 'nthread': 4,
+        # 'min_split_gain': 1.0,
+        # 'min_data_in_leaf': 101,
+        # 'max_bin': 255,
+        # 'bagging_fraction': 1.0,
+        # 'max_depth': 7,
+        # 'feature_fraction': 1.0
         # lightgbm.basic.LightGBMError: b‘Number of classes should be specified and greater than 1 for multiclass training‘
     }
     clf = lgb.train(params, train_data, valid_sets=[validation_data])

@@ -29,8 +29,8 @@ def euclid_dist(vec1, vec2):
 def get_distance_function():
     # return cos_dist
     # return euclid_dist
-    # return jaccard_dist
-    return word2vec_dist
+    return jaccard_dist
+    # return word2vec_dist
 
 
 data = defaultdict(list)

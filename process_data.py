@@ -9,14 +9,19 @@ def format_label(x):
 
 
 if __name__ == '__main__':
-    df = pd.read_csv('data/train.csv')
-    train, dev, train_label, dev_label = train_test_split(df[['id', 'title1', 'title2']],
-                                                          df['label'],
-                                                          test_size=0.2,
-                                                          random_state=42)
-    train['label'] = train_label
-    dev['label'] = dev_label
+    train = pd.read_csv('data/train.csv')
+    print('origin we have %s train data' % len(train))
+    train.dropna(how='any', axis=0, inplace=True)
+    print('after drop nan data, we have %s' % len(train))
     test = pd.read_csv('data/test.csv')
-    train.to_csv('data/train.tsv', sep='\t', index=False)
-    dev.to_csv('data/dev.tsv', sep='\t', index=False)
+    print('initially we have %s test data' % len(test))
+    test = pd.concat([test, train[['id', 'title1', 'title2']]])
+    print('add train_data we have %s' % len(test))
     test.to_csv('data/test.tsv', sep='\t', index=False)
+    test = pd.read_csv('data/test.csv')
+    disagree_train_data = train[train.label == u'disagreed']
+    print('we have %s disagree label data' % len(disagree_train_data))
+    # train = pd.concat([train, disagree_train_data, disagree_train_data])
+    print('after dup three times disagree data, we have %s' % len(train))
+    train = train.sample(frac=1)
+    train.to_csv('data/train.tsv', sep='\t', index=False)
