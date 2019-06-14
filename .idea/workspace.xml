@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="092388f6-5217-4c8d-9b8d-bcf1a14b95cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cv_train_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/get_bert_result.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clean_train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cv_bert.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_cv_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extract_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lgb_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/lgb_train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/process_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/process_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cv_train_data.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/run_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_script.txt" beforeDir="false" afterPath="$PROJECT_DIR$/run_script.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_doc_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_doc_vectors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils_common.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils_common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_script.txt" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +19,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/DataMining_Project$look_up_data.coverage" NAME="look_up_data Coverage Results" MODIFIED="1560090728185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$cv_lgb_train.coverage" NAME="cv_lgb_train Coverage Results" MODIFIED="1559966791172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/DataMining_Project$cv_train_data.coverage" NAME="cv_train_data Coverage Results" MODIFIED="1560439017426" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DataMining_Project$cv_train_data.coverage" NAME="cv_train_data Coverage Results" MODIFIED="1560443315814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$get_bert_result.coverage" NAME="get_bert_result Coverage Results" MODIFIED="1560387676429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$process_data.coverage" NAME="process_data Coverage Results" MODIFIED="1560357683262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$get_distance_between_sentences.coverage" NAME="get_distance_between_sentences Coverage Results" MODIFIED="1560088776568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -33,89 +30,34 @@
     <SUITE FILE_PATH="coverage/DataMining_Project$lgb_train.coverage" NAME="lgb_train Coverage Results" MODIFIED="1559987431378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$cut_words.coverage" NAME="cut_words Coverage Results" MODIFIED="1559566802599" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DataMining_Project$lgb_train__1_.coverage" NAME="lgb_train (1) Coverage Results" MODIFIED="1560438897293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DataMining_Project$cv_train_data__1_.coverage" NAME="cv_train_data (1) Coverage Results" MODIFIED="1560444926866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils_common.py">
+        <entry file="file://$PROJECT_DIR$/get_cv_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/get_bert_result.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="26" selection-end-line="21" selection-end-column="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cv_train_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/train.csv">
-          <provider selected="true" editor-type-id="LargeFileEditor">
-            <state relative-caret-position="-148024" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/result_864.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="80100" column="14" selection-start-line="80100" selection-start-column="14" selection-end-line="80100" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run_classifier.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1149">
-              <caret line="737" selection-start-line="737" selection-end-line="737" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/tensorflow/contrib/tpu/python/tpu/tpu_estimator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="2446" column="42" selection-start-line="2446" selection-start-column="42" selection-end-line="2446" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/tensorflow_estimator/python/estimator/estimator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-225">
-              <caret line="1159" column="6" selection-start-line="1159" selection-start-column="6" selection-end-line="1159" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lgb_train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
-              <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
+            <state relative-caret-position="437">
+              <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
               <folding>
-                <element signature="e#14#33#0" expanded="true" />
+                <element signature="e#15#34#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/train_0.csv">
+          <provider selected="true" editor-type-id="LargeFileEditor">
+            <state relative-caret-position="323">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/train_0.tsv">
+          <provider selected="true" editor-type-id="LargeFileEditor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -123,6 +65,56 @@
           <provider selected="true" editor-type-id="LargeFileEditor">
             <state relative-caret-position="209">
               <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/process_data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="25" column="18" selection-start-line="25" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cv_bert.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="110" selection-start-line="2" selection-start-column="110" selection-end-line="2" selection-end-column="110" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/run.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="206" selection-start-column="206" selection-end-column="206" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/train_clean.csv">
+          <provider selected="true" editor-type-id="LargeFileEditor">
+            <state relative-caret-position="418">
+              <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/train.csv">
+          <provider selected="true" editor-type-id="LargeFileEditor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/result_864.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1521691">
+              <caret line="80089" column="17" selection-start-line="80089" selection-start-column="17" selection-end-line="80089" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -149,6 +141,9 @@
       <find>18374</find>
       <find>357062</find>
       <find>result</find>
+      <find>learning_rate</find>
+      <find>flags</find>
+      <find>train.tsv</find>
     </findStrings>
     <replaceStrings>
       <replace>multi_logloss_mean</replace>
@@ -176,7 +171,6 @@
         <option value="$PROJECT_DIR$/look_up_data.py" />
         <option value="$PROJECT_DIR$/lgb_smote.py" />
         <option value="$PROJECT_DIR$/run_script.txt" />
-        <option value="$PROJECT_DIR$/run_classifier.py" />
         <option value="$PROJECT_DIR$/extract_features.py" />
         <option value="$PROJECT_DIR$/train_doc_vectors.py" />
         <option value="$PROJECT_DIR$/get_bert_result.py" />
@@ -186,7 +180,10 @@
         <option value="$USER_HOME$/Library/Python/2.7/lib/python/site-packages/tensorflow/contrib/tpu/python/tpu/tpu_estimator.py" />
         <option value="$USER_HOME$/Library/Python/2.7/lib/python/site-packages/tensorflow_estimator/python/estimator/estimator.py" />
         <option value="$PROJECT_DIR$/lgb_train.py" />
+        <option value="$PROJECT_DIR$/run_classifier.py" />
         <option value="$PROJECT_DIR$/cv_train_data.py" />
+        <option value="$PROJECT_DIR$/get_cv_data.py" />
+        <option value="$PROJECT_DIR$/cv_bert.sh" />
       </list>
     </option>
   </component>
@@ -205,11 +202,6 @@
             <path>
               <item name="DataMining-Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="DataMining-Project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DataMining-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataMining-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -247,7 +239,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.cv_train_data">
+  <component name="RunManager" selected="Python.cv_train_data (1)">
+    <configuration name="cv_train_data (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DataMining-Project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/get_cv_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="cv_train_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DataMining-Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -261,29 +275,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cv_train_data.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="extract_features" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="DataMining-Project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_features.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/clean_train.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -360,11 +352,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.cv_train_data (1)" />
         <item itemvalue="Python.cv_train_data" />
         <item itemvalue="Python.lgb_train (1)" />
         <item itemvalue="Python.get_bert_result" />
         <item itemvalue="Python.process_data" />
-        <item itemvalue="Python.extract_features" />
       </list>
     </recent_temporary>
   </component>
@@ -383,12 +375,13 @@
       <workItem from="1559548095024" duration="16669000" />
       <workItem from="1559724917728" duration="1151000" />
       <workItem from="1560152497318" duration="48000" />
-      <workItem from="1560216206866" duration="25015000" />
+      <workItem from="1560216206866" duration="30018000" />
+      <workItem from="1560444999181" duration="769000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144737000" />
+    <option name="totallyTimeSpent" value="150509000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -402,13 +395,12 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26752505" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27110156" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" weight="0.32891566" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28433734" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" visible="true" weight="0.28433734" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -416,9 +408,10 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32891566" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49928468" visible="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32891566" />
+      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -431,58 +424,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/train_final.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="-9369">
-          <caret line="1598" column="32" selection-start-line="1598" selection-start-column="32" selection-end-line="1598" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/submission.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-28692">
-          <caret line="221" column="16" selection-start-line="221" selection-start-column="16" selection-end-line="221" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/lightgbm/basic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1117">
-          <caret line="2312" column="8" selection-start-line="2312" selection-start-column="8" selection-end-line="2312" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/lightgbm/engine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2035">
-          <caret line="335" column="7" selection-start-line="335" selection-start-column="7" selection-end-line="335" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Python/2.7/site-packages/sklearn/metrics/classification.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-29217">
-          <caret line="105" column="4" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/train_after_clean_after_process.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="247">
-          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/train_after_clean.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="-807">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/lightgbm/sklearn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -586,19 +527,7 @@
     <entry file="file://$PROJECT_DIR$/modeling.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/toutiao_titles.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="342">
-          <caret line="18" column="30" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/test_results.tsv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/toutiao_titles.csv" />
     <entry file="file://$PROJECT_DIR$/data/train_categorical_final.csv">
       <provider selected="true" editor-type-id="LargeFileEditor">
         <state relative-caret-position="171">
@@ -656,13 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_script.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="256" selection-start-column="256" selection-end-column="256" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/sample_submission.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -693,25 +615,6 @@
     <entry file="file://$PROJECT_DIR$/data/result_best_all.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/process_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/test.tsv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="209">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-        </state>
-      </provider>
-      <provider editor-type-id="csv-text-editor">
-        <state relative-caret-position="-140">
-          <caret line="8371" column="27" selection-start-line="8371" selection-start-column="27" selection-end-line="8371" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils_common.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -726,42 +629,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/get_bert_result.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="26" selection-end-line="21" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lgb_train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
-          <folding>
-            <element signature="e#14#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1149">
-          <caret line="737" selection-start-line="737" selection-end-line="737" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/train.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="-148024" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/result_864.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="80100" column="14" selection-start-line="80100" selection-start-column="14" selection-end-line="80100" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/tensorflow/contrib/tpu/python/tpu/tpu_estimator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -769,10 +636,121 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cv_train_data.py">
+    <entry file="file://$PROJECT_DIR$/get_bert_result.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="13" />
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lgb_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
+          <folding>
+            <element signature="e#14#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/tensorflow/python/platform/flags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Python/2.7/lib/python/site-packages/tensorflow/python/platform/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="111" column="4" selection-start-line="111" selection-start-column="4" selection-end-line="111" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="223" selection-start-line="223" selection-end-line="223" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clean_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="2" selection-end-column="35" />
+          <folding>
+            <element signature="e#15#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/get_cv_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
+          <folding>
+            <element signature="e#15#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/train_0.tsv">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/test.tsv">
+      <provider editor-type-id="csv-text-editor">
+        <state relative-caret-position="-140">
+          <caret line="8371" column="27" selection-start-line="8371" selection-start-column="27" selection-end-line="8371" selection-end-column="27" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="209">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/process_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="25" column="18" selection-start-line="25" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/train_clean.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="418">
+          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/train.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/result_864.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1521691">
+          <caret line="80089" column="17" selection-start-line="80089" selection-start-column="17" selection-end-line="80089" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cv_bert.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="110" selection-start-line="2" selection-start-column="110" selection-end-line="2" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/train_0.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="323">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="206" selection-start-column="206" selection-end-column="206" />
         </state>
       </provider>
     </entry>

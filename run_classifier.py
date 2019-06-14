@@ -50,6 +50,16 @@ flags.DEFINE_string(
     "output_dir", None,
     "The output directory where the model checkpoints will be written.")
 
+## train_data, eval_data
+flags.DEFINE_string(
+    "train_file", None,
+    "train_file"
+)
+flags.DEFINE_string(
+    "eval_file", None,
+    "eval_file"
+)
+
 ## Other parameters
 
 flags.DEFINE_string(
@@ -210,12 +220,12 @@ class MrpcProcessor(DataProcessor):
     def get_train_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_tsv(os.path.join(data_dir, "train.tsv")), "train")
+            self._read_tsv(os.path.join(data_dir, FLAGS.train_file)), "train")
 
     def get_dev_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_tsv(os.path.join(data_dir, "dev.tsv")), "dev")
+            self._read_tsv(os.path.join(data_dir, FLAGS.eval_file)), "dev")
 
     def get_test_examples(self, data_dir):
         """See base class."""
