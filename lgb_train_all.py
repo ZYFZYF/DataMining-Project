@@ -5,7 +5,7 @@ import lightgbm as lgb
 from sklearn import metrics
 from sklearn import model_selection
 from utils_logging import Logging
-from utils_common import TRAIN_FEATURES, LABEL, TRAIN_FEATURES_NEW, CATEGORICAL_FEATURES, CV_NUMS
+from utils_common import TRAIN_FEATURES, LABEL, CATEGORICAL_FEATURES
 from sklearn.model_selection import train_test_split
 from collections import defaultdict
 
@@ -57,11 +57,10 @@ if __name__ == '__main__':
     data = pd.read_csv('data/train_categorical_final.csv')
     for col in CATEGORICAL_FEATURES:
         data[col] = data[col].astype('category')
-    for cv in range(CV_NUMS):
-        bert_results = pd.read_csv('data/test_%s.tsv' % cv, sep='\t',
-                                   names=['id', 'bert_%s_prob_agree' % cv, 'bert_%s_prob_unrelate' % cv,
-                                          'bert_%s_prob_disagree' % cv])
-        data = pd.merge(left=data, right=bert_results, on='id', how='left')
+    TRAIN_FEATURES_NEW = ['bert_prob_agree', 'bert_prob_unrelate', 'bert_prob_disagree']
+    bert_results = pd.read_csv('data/test_all.tsv', sep='\t',
+                               names=['id', 'bert_prob_agree', 'bert_prob_unrelate', 'bert_prob_disagree'])
+    data = pd.merge(left=data, right=bert_results, on='id', how='left')
     print(data.head)
     print(data.columns)
     train_data = data[data.label == data.label]
@@ -84,29 +83,19 @@ if __name__ == '__main__':
     temp = pd.concat([temp, disagree_data, disagree_data])
     # temp = pd.concat([temp])
     X_train = temp[TRAIN_FEATURES_NEW]
-    print(X_train.columns)
     Y_train = temp[LABEL]
     print(len(X_train), len(agree_data), len(disagree_data), len(unrelated_data))
+    print(X_train.columns)
     train_data = lgb.Dataset(X_train, label=Y_train)
     validation_data = lgb.Dataset(X_eval[TRAIN_FEATURES_NEW], label=Y_eval)
     params = {
         'objective': 'multiclass',
+        'lambda_l1': 0.1,
+        'lambda_l2': 0.2,
         'learning_rate': 0.01,
         'num_class': 3,
         'num_boost_round': 50000,  # 没有区别
         'early_stopping_rounds': 50,
-        'num_leaves': 95,
-        'lambda_l1': 1.0,
-        'bagging_freq': 45,
-        'lambda_l2': 1.0,
-        'nthread': 4,
-        'min_split_gain': 1.0,
-        'min_data_in_leaf': 101,
-        'max_bin': 255,
-        'bagging_fraction': 1.0,
-        'max_depth': 7,
-        'feature_fraction': 1.0
-
         # 'num_leaves': 95,
         # 'bagging_freq': 45,
         # 'nthread': 4,

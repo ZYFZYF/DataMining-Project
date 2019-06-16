@@ -1,4 +1,5 @@
 #encoding=utf8
+from utils_common import CV_NUMS
 import pandas as pd
 
 
@@ -8,15 +9,22 @@ def get_max_index(row):
 
 
 if __name__ == '__main__':
-    df = pd.read_csv('./data/test_results_dup.tsv', sep='\t', names=['id', 'poss_a', 'poss_b', 'poss_c'])
-    tf = pd.read_csv('./data/test.csv')
-    tf.dropna(how='any', axis=0, inplace=True)
-    print(len(df), len(tf))
-    ans = pd.DataFrame(columns=['id', 'result'])
-    ans['id'] = tf['id']
-    ans['result'] = df.apply(get_max_index, axis=1)
-    print(len(ans))
-    # print(ans['result'])
-    ans.loc[len(ans) + 1] = ['357062', 'unrelated']
-    print(len(ans))
-    ans[['id', 'result']].to_csv('./data/result.txt', index=False, header=False, sep='\t')
+    for cv in range(CV_NUMS):
+        df = pd.read_csv('./data/test_%s.tsv' % cv, sep='\t', names=['id', 'poss_a', 'poss_b', 'poss_c'])
+        print(len(df))
+        df = df[(df.id == 321187) | (df.id > 321188)]
+        df.sort_values(by=['id'], inplace=True)
+        print(len(df))
+        df['result'] = df.apply(get_max_index, axis=1)
+        df = df[['id', 'result']]
+        # print(ans['result'])
+        print(len(df))
+        tf = pd.read_csv('./data/test.csv')
+        old_ids = set(list(tf['id'].to_list()))
+        now_ids = set(list(df['id'].to_list()))
+        print(len(old_ids), len(now_ids), old_ids - now_ids)
+        df.loc[len(df)] = ['378161', 'unrelated']
+        df.loc[len(df)] = ['329037', 'disagreed']
+        print(len(df))
+        df.to_csv('./data/result_%s.txt' % cv, index=False, header=False, sep='\t')
+
